@@ -13,7 +13,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
+import com.spotify.sdk.android.auth.BuildConfig;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -28,9 +32,9 @@ import okhttp3.Response;
 public class SpotifyLoginActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "46092cda7f3f48c0a52c013ce2db5208";
-    public static final String REDIRECT_URI = "com.example.concert_dates://callback";
-    public static final int AUTH_TOKEN_REQUEST_CODE = 1017;
-    public static final int AUTH_CODE_REQUEST_CODE = 1018;
+    public static final String REDIRECT_URI = "http://localhost:8888/callback";
+    public static final int AUTH_TOKEN_REQUEST_CODE = 1001;
+    public static final int AUTH_CODE_REQUEST_CODE = 1002;
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private String mAccessToken;
@@ -42,7 +46,7 @@ public class SpotifyLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spotify_login);
 
-        getSupportActionBar().setTitle(String.format(Locale.CANADA, "Spotify Login %s", BuildConfig.VERSION_NAME));
+        getSupportActionBar().setTitle(String.format(Locale.CANADA, "Spotify Login %s", BuildConfig.LIB_VERSION_NAME));
 
     }
 
@@ -56,6 +60,7 @@ public class SpotifyLoginActivity extends AppCompatActivity {
         if(mAccessToken == null){
             final Snackbar snackbar = Snackbar.make(findViewById(R.id.activity_spotify_login), R.string.warning_need_token, Snackbar.LENGTH_SHORT);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(this,R.color.colorAccent));
+            snackbar.show();
             return;
         }
 
@@ -75,7 +80,12 @@ public class SpotifyLoginActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                try {
+                    final JSONObject jsonObject = new JSONObject(response.body().string());
+                    setResponse(jsonObject.toString(3));
+                } catch (JSONException e) {
+                    setResponse("Failed to parse data: " + e);
+                }
             }
         });
     }
@@ -107,13 +117,13 @@ public class SpotifyLoginActivity extends AppCompatActivity {
 
 
 
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         final AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, data);
-
         // Check if result comes from the correct activity
+        if (response.getError() != null && !response.getError().isEmpty()) {
+            setResponse(response.getError());
+        }
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
             updateTokenView();
