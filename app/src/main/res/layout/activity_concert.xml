@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_height="192dp"
+        android:layout_width="match_parent">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:toolbarId="@+id/toolbar"
+            app:layout_scrollFlags="exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorPrimary"
+            android:id="@+id/collapsing_toolbar"
+            app:titleEnabled="true">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" tools:srcCompat="@tools:sample/backgrounds/scenic[10]"
+                android:id="@+id/concert_iv_ConcertImage"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/concert_name" android:background="#55000000"
+                android:gravity="bottom" android:paddingBottom="8dp" android:paddingLeft="48dp"
+                android:textColor="@android:color/white" android:textSize="30sp"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent" app:layout_collapseMode="pin">
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".details.ConcertDetailsActivity">
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollview" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:text="Concert Details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:padding="8dp"
+                    android:textColor="@android:color/black" android:textStyle="bold" android:textSize="18sp"
+                    android:background="@color/design_default_color_primary"
+                    android:id="@+id/concert_details_title"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_margin="16dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/concert_tv_DateLabel"
+                            android:layout_weight="1"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/concert_tv_Date"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Time"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/concert_tv_TimeLabel"
+                            android:layout_weight="1"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/concert_tv_Time"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <TextView
+                    android:text="Venue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" android:textSize="18sp"
+                    android:background="@color/design_default_color_primary"/>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_margin="16dp">
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Venue name"
+                            android:id="@+id/concert_tv_VenueName"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Venue address"
+                            android:id="@+id/concert_tv_VenueAddress"/>
+<!--                        <TextView android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:id="@+id/venue_postal_code"/>-->
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/concert_tv_VenueCity"/>
+
+                    </LinearLayout>
+                    <fragment
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:id="@+id/concert_f_map"
+                        android:layout_weight="1"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        tools:layout="@layout/card_artist" />
+
+                </LinearLayout>
+                <TextView
+                    android:text="Seat Map"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seatmap_title"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:background="@color/design_default_color_primary"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    tools:srcCompat="@tools:sample/avatars[14]"
+                    android:id="@+id/concert_iv_SeatMap"/>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

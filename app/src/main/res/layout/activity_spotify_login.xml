@@ -14,14 +14,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/response_text_view"
-            android:layout_width="329dp"
-            android:layout_height="60dp"
-            android:textSize="10sp"
-            android:textColor="@color/white"
-            tools:text="Line 1\nLine 2\nLine 3" />
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,6 +56,14 @@
                 android:onClick="onGetUserProfileClicked"
                 android:text="Get User Profile"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/response_text_view"
+            android:layout_width="329dp"
+            android:layout_height="60dp"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            tools:text="Line 1\nLine 2\nLine 3" />
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

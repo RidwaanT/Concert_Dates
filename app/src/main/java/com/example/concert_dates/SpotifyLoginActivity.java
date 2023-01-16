@@ -28,7 +28,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
+/**
+ * I used this to understand how making Spotify calls works.
+ */
 public class SpotifyLoginActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "46092cda7f3f48c0a52c013ce2db5208";
@@ -91,8 +93,8 @@ public class SpotifyLoginActivity extends AppCompatActivity {
     }
 
     public void onRequestCodeClicked(View view){
-        final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
-        AuthorizationClient.openLoginActivity(this,AUTH_TOKEN_REQUEST_CODE,request);
+        final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.CODE);
+        AuthorizationClient.openLoginActivity(this,AUTH_CODE_REQUEST_CODE,request);
     }
 
     public void onRequestTokenClicked(View view){
@@ -107,14 +109,6 @@ public class SpotifyLoginActivity extends AppCompatActivity {
                 .setCampaign("your-campaign-token")
                 .build();
     }
-
-
-
-    final Request request = new Request.Builder()
-            .url("https://api.spotify.com/v1/me")
-            .addHeader("Authorization","Bearer " +mAccessToken)
-            .build();
-
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

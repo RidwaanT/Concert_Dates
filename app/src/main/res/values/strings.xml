@@ -12,4 +12,6 @@
     <string name="warning_need_token">You need to request an access token first</string>
     <string name="token">Access Token: %1$s</string>
     <string name="code">Code: %1$s</string>
+    <string name="top_artists">Top Artists</string>
+    <string name="category_placeholder">Category Placeholder</string>
 </resources>
