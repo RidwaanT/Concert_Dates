@@ -80,7 +80,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 A project completed for my COSC 3P97 course. This project uses APIs from Google, TicketMaster and Spotify to allow Spotify users to find their favourite artists and then search for concert dates based on the closest locations
 
